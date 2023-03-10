@@ -15,7 +15,7 @@ export class FindComponent {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       let login = params['login'];
-      this.apiservice.getFindUsers(login).subscribe(find => this.find = find);
+      this.apiservice.getFindUsers(login).subscribe((list: any) => (this.find = list));
     });
   }
 }

@@ -1,28 +1,15 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-</head>
-
-<body>
-    <div class="row py-lg-5">
-        <div class="col-lg-2 col-md-8 mx-auto">
-          <h1 class="fw-light">Usuarios</h1>
-          <div class="col-lg-12">
-            <img src="{{find.avatar_url}}" class="img-thumbnail" alt="...">
+<div class="row py-lg-5">
+    <div class="col-lg-2 col-md-8 mx-auto">
+        <h1 class="fw-light">Usuarios</h1>
+        <div class="col-lg-12">
+            <img *ngIf="find" src="{{find.avatar_url}}" class="img-thumbnail" alt="...">
         </div>
-          <div class="card-body">
-            <h4>{{find.id}}</h4>
-            <h4>{{find.login}}</h4>
+        <div class="card-body">
+            <h4 *ngIf="find">{{find.id}}</h4>
+            <h4 *ngIf="find">{{find.login}}</h4>
         </div>
         <div class="col-lg-4">
-            <button type="button" class="btn btn-primary"  routerLink="">Volver</button>
-        </div>
+            <button type="button" class="btn btn-primary" routerLink="">Volver</button>
         </div>
     </div>
-</body>
-
-</html>
+</div>
