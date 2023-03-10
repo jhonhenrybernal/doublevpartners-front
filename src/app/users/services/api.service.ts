@@ -27,7 +27,7 @@ export class ApiService {
   public getUsers(params:any): Observable<List> {
     let name = ''
     if (params == '') {
-      name = '/search/users?q=YOUR_NAME'
+      name = '/search/users?q=""'
     }else{
       name = '/search/users?q='+params
     }
