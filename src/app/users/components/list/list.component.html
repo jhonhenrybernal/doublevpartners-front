@@ -1,6 +1,18 @@
 <div class="container">
     <div class="row">
         <h1 class="mt-5">Lista usuarios</h1>
+        <form class="row g-3" [formGroup]="searchUsers"  (ngSubmit)="onSubmit()">
+            <div class="col-auto">
+                <label for="login" class="visually-hidden">Password</label>
+                <input type="text" minlength="4"  class="form-control" id="login" placeholder="Ingrese Login" formControlName="search" name="search">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+            </div>
+        </form>
+        <ngb-alert [dismissible]="false" *ngIf="alert">
+            <strong>Ups! </strong>{{alertMsm}}.
+        </ngb-alert>
         <table class="table table-striped table-bordered" *ngIf="list">
             <thead>
                 <tr>
@@ -11,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of list.items ; let i = index ">
+                <tr *ngFor="let item of list.items.slice(0, 10); ; let i = index ">
                     <th scope="row">{{item.id}}</th>
                     <td>{{item.login}}</td>
                     <td>{{item.type}}</td>

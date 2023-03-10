@@ -21,14 +21,19 @@ export class ApiService {
     "id": "",
     "avatar_url": "",
 }
-  private userUrl = "https://api.github.com/search/users?q=YOUR_NAME"; 
-  private userUrlParams = "https://api.github.com/users/"; 
+  private userUrl = "https://api.github.com"; 
   constructor(private http: HttpClient) { }
 
-  public getUsers(): Observable<List> {
-    return this.http.get<List>(this.userUrl);
+  public getUsers(params:any): Observable<List> {
+    let name = ''
+    if (params == '') {
+      name = '/search/users?q=YOUR_NAME'
+    }else{
+      name = '/search/users?q='+params
+    }
+    return this.http.get<List>(this.userUrl+name);
   }
   public getFindUsers(login:any): Observable<Find> {
-    return this.http.get<Find>(this.userUrlParams+login);
+    return this.http.get<Find>(this.userUrl+'/users/'+login);
   }
 }

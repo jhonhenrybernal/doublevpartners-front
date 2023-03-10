@@ -1,12 +1,12 @@
 <div class="row py-lg-5">
     <div class="col-lg-2 col-md-8 mx-auto">
-        <h1 class="fw-light">Usuarios</h1>
+        <h1 class="fw-light">Usuario</h1>
         <div class="col-lg-12">
             <img *ngIf="find" src="{{find.avatar_url}}" class="img-thumbnail" alt="...">
         </div>
         <div class="card-body">
-            <h4 *ngIf="find">{{find.id}}</h4>
-            <h4 *ngIf="find">{{find.login}}</h4>
+            <h4>ID: <b *ngIf="find">{{find.id}}</b></h4>
+            <h4>LOGIN: <b *ngIf="find">{{find.login}}</b></h4>
         </div>
         <div class="col-lg-4">
             <button type="button" class="btn btn-primary" routerLink="">Volver</button>
