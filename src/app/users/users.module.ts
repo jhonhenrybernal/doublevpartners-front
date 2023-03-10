@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './components/list/list.component';
 import { FindComponent } from './components/find/find.component';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -11,7 +12,8 @@ import { FindComponent } from './components/find/find.component';
     FindComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+    RouterModule
+  ],
 })
 export class UsersModule { }

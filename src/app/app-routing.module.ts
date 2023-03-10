@@ -4,7 +4,7 @@ import { ListComponent } from './users/components/list/list.component';
 import { FindComponent } from './users/components/find/find.component';
 const routes: Routes = [
   { path: '', component: ListComponent,  pathMatch: 'full'},
-  { path: 'find', component: FindComponent},
+  { path: 'find/:login', component: FindComponent},
 ];
 
 @NgModule({
