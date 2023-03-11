@@ -5,7 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
-import  { UsersModule } from './users/users.module'
+import  { UsersModule } from './users/users.module';
+import { NgChartsModule } from 'ng2-charts'
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import  { UsersModule } from './users/users.module'
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    UsersModule
+    UsersModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

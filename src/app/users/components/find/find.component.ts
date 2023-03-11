@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { ApiService } from '../../services/api.service';
 
@@ -7,7 +7,7 @@ import { ApiService } from '../../services/api.service';
   templateUrl: './find.component.html',
   styleUrls: ['./find.component.css']
 })
-export class FindComponent {
+export class FindComponent implements OnInit{
   find: any;
 
   constructor(private apiservice: ApiService, private activatedRoute: ActivatedRoute) {
@@ -15,7 +15,9 @@ export class FindComponent {
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       let login = params['login'];
-      this.apiservice.getFindUsers(login).subscribe((list: any) => (this.find = list));
+      this.apiservice.getFindUsers(login).then(datos => {
+        this.find = datos;
+      });
     });
   }
 }

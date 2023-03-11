@@ -4,7 +4,7 @@ import { ListComponent } from './components/list/list.component';
 import { FindComponent } from './components/find/find.component';
 import {RouterModule} from '@angular/router';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
-
+import { NgChartsModule } from 'ng2-charts'
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -19,7 +19,8 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbAlertModule
+    NgbAlertModule,
+    NgChartsModule
   ],
 })
 export class UsersModule { }

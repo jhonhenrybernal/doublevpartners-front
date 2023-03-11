@@ -1,42 +1,51 @@
 <div class="container">
     <div class="row">
-        <h1 class="mt-5">Lista usuarios</h1>
-        <form class="row g-3" [formGroup]="searchUsers"  (ngSubmit)="onSubmit()">
-            <div class="col-auto">
-                <label for="login" class="visually-hidden">Password</label>
-                <input type="text" minlength="4"  class="form-control" id="login" placeholder="Ingrese Login" formControlName="search" name="search">
+        <div class="col-sm-5 col-md-6">
+            <h1 class="mt-5">Lista usuarios</h1>
+            <form class="row g-3" [formGroup]="searchUsers"  (ngSubmit)="onSubmit()">
+                <div class="col-auto">
+                    <label for="login" class="visually-hidden">Password</label>
+                    <input type="text" minlength="4"  class="form-control" id="login" placeholder="Ingrese Login" formControlName="search" name="search">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+                </div>
+            </form>
+            <ngb-alert [dismissible]="false" *ngIf="alert">
+                <strong>Ups! </strong>{{alertMsm}}.
+            </ngb-alert>
+            <table class="table table-striped table-bordered" *ngIf="list">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Login</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of list.items.slice(0, 10); ; let i = index ">
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.login}}</td>
+                        <td>{{item.type}}</td>
+                        <td><a class="btn btn-secondary" routerLink="/find/{{item.login}}"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                    <path
+                                        d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                </svg></a> </td>
+                    </tr>
+                </tbody>
+    
+            </table>
+        </div>
+        <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">
+            <div>
+                <h1>1. Pie chart</h1>
+                <canvas  #pieCanvas style="height:20vh; width:40vw"></canvas>
+                <hr color="red">
             </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">Buscar</button>
-            </div>
-        </form>
-        <ngb-alert [dismissible]="false" *ngIf="alert">
-            <strong>Ups! </strong>{{alertMsm}}.
-        </ngb-alert>
-        <table class="table table-striped table-bordered" *ngIf="list">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Login</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let item of list.items.slice(0, 10); ; let i = index ">
-                    <th scope="row">{{item.id}}</th>
-                    <td>{{item.login}}</td>
-                    <td>{{item.type}}</td>
-                    <td><a class="btn btn-secondary" routerLink="/find/{{item.login}}"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
-                                <path
-                                    d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-                            </svg></a> </td>
-                </tr>
-            </tbody>
-
-        </table>
+        </div>
     </div>
 </div>
