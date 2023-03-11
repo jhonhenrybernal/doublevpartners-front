@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 
 import { ListGuard } from './list.guard';
 
-describe('ListGuardGuard', () => {
-  let guard: ListGuardGuard;
+describe('ListGuard', () => {
+  let guard: ListGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
