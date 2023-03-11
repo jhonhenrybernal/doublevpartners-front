@@ -31,7 +31,10 @@ export class ApiService {
     "received_events_url":"",
     "type":"",
     "site_admin":"",
-    "score":0
+    "score":0,
+    "total_count":0,
+    "incomplete_results": false,
+    "items":{}
   }
 
   private find: Find = {
@@ -57,20 +60,5 @@ export class ApiService {
 
   getFindUsers(login:any): Promise<any> { //promise
     return this.http.get(this.userUrl+'/users/'+login,this.header).toPromise();
-  }
-
-  public searchUser(login:string) {
-    let promise = new Promise<void>((resolve, reject) => {
-      let apiURL = this.userUrl+'/users/'+login;
-    
-      this.http.get(apiURL,this.header)
-        .toPromise()
-        .then(
-          res => { // Success
-            resolve();
-          }
-        );
-    });
-    return promise;
   }
 }

@@ -23,6 +23,10 @@ export class ListComponent {
   ctx: any;
   @ViewChild('pieCanvas') pieCanvas!: { nativeElement: any };
   pieChart: any;
+  aList:any;
+  aListLength:any;
+  aLogin: any[] = [];
+  aFollowers: any[] = [];
 
   constructor(private apiservice: ApiService,  private router: Router,private formBuilder: FormBuilder  ) {
   }
@@ -34,7 +38,7 @@ export class ListComponent {
    
   }
   
-  ngAfterViewInit(): void {    
+  ngAfterContentInit(): void {    
     this.pieChartBrowser();
   }
   
@@ -56,13 +60,30 @@ export class ListComponent {
   pieChartBrowser(): void {
     this.apiservice.getUsers('').subscribe(list => {
       this.list = list;
-      //this.rowsListChart(this.list)
+      this.aList = list.items;
+      this.aListLength = this.aList.slice(this.aList.length - 10)
+   
+      for (let i = 0; i < this.aListLength.length; i++) {
+        const element = this.aListLength[i];
+        this.apiservice.getFindUsers(element.login).then(datos => {
+          this.aLogin.push(datos.login);
+          this.aFollowers.push(datos.followers);
+          
+        });
+        
+      }
+    });  
+    console.log(this.aLogin)
+    console.log(this.aFollowers)
+    setTimeout(() => {
+      var dataLabel = this.aLogin
+      var dataValue = this.aFollowers
       this.canvas = this.pieCanvas.nativeElement;
       this.ctx = this.canvas.getContext('2d');
       this.pieChart = new Chart(this.ctx, {
         type: 'pie',
         data: {
-          labels: ['Apple', 'Google', 'Facebook', 'Infosys', 'Hp', 'Accenture'],
+          labels: dataLabel,
           datasets: [
             {
               backgroundColor: [
@@ -77,25 +98,12 @@ export class ListComponent {
                 '#6610f2',
                 '#0d6efd',
               ],
-              data: [12, 19, 3, 17, 28, 24],
+              data: dataValue,
             },
           ],
         },
       });
-    });  
-  }
-
-  rowsListChart(list:any){
-    setTimeout(() => {
-      
-      var l = list.items
-      for (let i = 0; i < l.length; i++) {
-        const element = l[i];
-        this.apiservice.searchUser(element.login).then(res=>{
-          console.log(res)
-        });
-        
-      }
     }, 2000);
+      
   }
 }
