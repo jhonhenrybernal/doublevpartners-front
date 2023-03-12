@@ -1,16 +1,65 @@
 import { TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from './api.service';
 
 describe('ApiService', () => {
   let service: ApiService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [ApiService]
+    });
     service = TestBed.inject(ApiService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should return a list of users', () => {
+    const mockResponse = {
+      "total_count": 1,
+      "incomplete_results": false,
+      "items": [
+        {
+          "login": "octocat",
+          "id": 1,
+          "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+          "followers": 10
+        }
+      ]
+    };
+
+    service.getUsers('octocat').subscribe(res => {
+      expect(res).toEqual(mockResponse);
+    });
+
+    const req = httpMock.expectOne('https://api.github.com/search/users?q=octocat');
+    expect(req.request.method).toBe('GET');
+    req.flush(mockResponse);
+  });
+
+  it('should return user details', () => {
+    const mockResponse = {
+      "login": "octocat",
+      "id": 1,
+      "avatar_url": "https://github.com/images/error/octocat_happy.gif",
+      "followers": 10
+    };
+
+    service.getFindUsers('octocat').then(res => {
+      expect(res).toEqual(mockResponse);
+    });
+
+    const req = httpMock.expectOne('https://api.github.com/users/octocat');
+    expect(req.request.method).toBe('GET');
+    req.flush(mockResponse);
   });
 });
