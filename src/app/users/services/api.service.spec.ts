@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from './api.service';
+import { List } from '../modules/list';
 
 describe('ApiService', () => {
   let service: ApiService;
@@ -24,7 +25,7 @@ describe('ApiService', () => {
   });
 
   it('should return a list of users', () => {
-    const mockResponse = {
+    const mockResponse:List = {
       "total_count": 1,
       "incomplete_results": false,
       "items": [
@@ -34,7 +35,26 @@ describe('ApiService', () => {
           "avatar_url": "https://github.com/images/error/octocat_happy.gif",
           "followers": 10
         }
-      ]
+      ],
+      "login": '',
+      "id": 0,
+      "node_id": '',
+      "avatar_url": '',
+      "gravatar_id": '',
+      "url": '',
+      "html_url": '',
+      "followers_url": '',
+      "following_url": '',
+      "gists_url": '',
+      "starred_url": '',
+      "subscriptions_url": '',
+      "organizations_url": '',
+      "repos_url": '',
+      "events_url": '',
+      "received_events_url": '',
+      "type": '',
+      "site_admin": '',
+      "score": 0
     };
 
     service.getUsers('octocat').subscribe(res => {
