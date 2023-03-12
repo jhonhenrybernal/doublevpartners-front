@@ -1,11 +1,6 @@
 <p align="center"><a href="https://github.com/jhonhenrybernal/doublevpartners-front/blob/main/src/assets/prueba.png?raw=true" target="_blank"><img src="https://github.com/jhonhenrybernal/doublevpartners-front/blob/main/src/assets/prueba.png?raw=true" width="400"></a></p>
 
 
-
-## Proyecto elavorado 
-
-Laravel como backend aplicando el patron de repositorio y vueJs como frontend
-
 # Descripción
 
 Prueba tecnica para double V partners - Desarrollador Full Stack 
